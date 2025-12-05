@@ -195,21 +195,31 @@ const MainScreen = () => {
         /* Mobile Optimizations */
         @media (max-width: 768px) {
            .container {
-             gap: 2rem;
+             gap: 1.5rem;
              padding: 0 1rem;
+             height: 100vh; /* Use full height to center nicely */
+             justify-content: center;
            }
            
            .log-button {
-             height: 200px; /* Keep them tall on mobile */
-             font-size: 2rem; /* Even larger text */
+             height: 280px; /* Extremely tall */
+             width: 100%;
+             max-width: 240px; /* Force narrow column look */
+             font-size: 2rem;
              border-width: 3px;
-             border-radius: 35px;
-             width: 100%; /* Ensure they take available width up to max-width */
+             border-radius: 40px; /* High border radius for pill shape */
            }
            
            .title {
-             font-size: 2rem;
-             margin-bottom: 2rem;
+             font-size: 1.8rem;
+             margin-bottom: 1rem;
+             position: absolute;
+             top: 15%;
+           }
+           
+           .buttons-container {
+             justify-content: center;
+             margin-top: 2rem;
            }
         }
         
