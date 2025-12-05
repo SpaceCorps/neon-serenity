@@ -4,58 +4,58 @@ import { storageService } from '../services/storage';
 import { BarChart2 } from 'lucide-react';
 
 const MainScreen = () => {
-    const navigate = useNavigate();
-    const [feedback, setFeedback] = useState(null); // 'emotional' | 'background' | null
+  const navigate = useNavigate();
+  const [feedback, setFeedback] = useState(null); // 'emotional' | 'background' | null
 
-    const handleLog = (type) => {
-        storageService.logEvent(type);
-        setFeedback(type);
+  const handleLog = (type) => {
+    storageService.logEvent(type);
+    setFeedback(type);
 
-        // Reset feedback animation after a short delay
-        setTimeout(() => {
-            setFeedback(null);
-        }, 1000);
-    };
+    // Reset feedback animation after a short delay
+    setTimeout(() => {
+      setFeedback(null);
+    }, 1000);
+  };
 
-    return (
-        <div className="main-screen">
-            <button
-                className="stats-button"
-                onClick={() => navigate('/stats')}
-                aria-label="View Statistics"
-            >
-                <BarChart2 size={24} color="var(--text-color)" />
-            </button>
+  return (
+    <div className="main-screen">
+      <button
+        className="stats-button"
+        onClick={() => navigate('/stats')}
+        aria-label="View Statistics"
+      >
+        <BarChart2 size={24} color="var(--text-color)" />
+      </button>
 
-            <div className="container">
-                <h1 className="title">How are you feeling?</h1>
+      <div className="container">
+        <h1 className="title">How are you feeling?</h1>
 
-                <div className="buttons-container">
-                    <button
-                        className={`log-button emotional ${feedback === 'emotional' ? 'active' : ''}`}
-                        onClick={() => handleLog('emotional')}
-                    >
-                        <div className="glow"></div>
-                        <span className="label">Emotional</span>
-                    </button>
+        <div className="buttons-container">
+          <button
+            className={`log-button emotional ${feedback === 'emotional' ? 'active' : ''}`}
+            onClick={() => handleLog('emotional')}
+          >
+            <div className="glow"></div>
+            <span className="label">Emotional</span>
+          </button>
 
-                    <button
-                        className={`log-button background ${feedback === 'background' ? 'active' : ''}`}
-                        onClick={() => handleLog('background')}
-                    >
-                        <div className="glow"></div>
-                        <span className="label">Background</span>
-                    </button>
-                </div>
+          <button
+            className={`log-button background ${feedback === 'background' ? 'active' : ''}`}
+            onClick={() => handleLog('background')}
+          >
+            <div className="glow"></div>
+            <span className="label">Background</span>
+          </button>
+        </div>
 
-                {feedback && (
-                    <div className="feedback-message">
-                        Logged {feedback} anxiety.
-                    </div>
-                )}
-            </div>
+        {feedback && (
+          <div className="feedback-message">
+            Logged {feedback} anxiety.
+          </div>
+        )}
+      </div>
 
-            <style>{`
+      <style>{`
         .main-screen {
           flex: 1;
           display: flex;
@@ -139,51 +139,74 @@ const MainScreen = () => {
         }
 
         .log-button.emotional {
-          border-color: rgba(255, 0, 85, 0.3);
-          box-shadow: 0 4px 30px rgba(255, 0, 85, 0.1);
+          border-color: rgba(255, 0, 85, 0.5);
+          box-shadow: 0 4px 30px rgba(255, 0, 85, 0.15);
+          background: linear-gradient(135deg, rgba(255, 0, 85, 0.1) 0%, rgba(255, 0, 85, 0.05) 100%);
         }
 
         .log-button.emotional:hover {
-          box-shadow: 0 0 20px rgba(255, 0, 85, 0.4);
+          box-shadow: 0 0 30px rgba(255, 0, 85, 0.5);
           border-color: var(--accent-hot);
+          background: linear-gradient(135deg, rgba(255, 0, 85, 0.2) 0%, rgba(255, 0, 85, 0.1) 100%);
         }
 
         .log-button.emotional .glow {
           position: absolute;
           width: 100%;
           height: 100%;
-          background: radial-gradient(circle at center, rgba(255, 0, 85, 0.2) 0%, transparent 70%);
-          opacity: 0;
+          background: radial-gradient(circle at center, rgba(255, 0, 85, 0.4) 0%, transparent 70%);
+          opacity: 0.3; /* Always visible slightly */
           transition: opacity 0.3s ease;
         }
 
         .log-button.emotional:hover .glow {
-          opacity: 1;
+          opacity: 0.8;
         }
 
         .log-button.background {
-          border-color: rgba(0, 210, 255, 0.3);
-          box-shadow: 0 4px 30px rgba(0, 210, 255, 0.1);
+          border-color: rgba(0, 210, 255, 0.5);
+          box-shadow: 0 4px 30px rgba(0, 210, 255, 0.15);
+          background: linear-gradient(135deg, rgba(0, 210, 255, 0.1) 0%, rgba(0, 210, 255, 0.05) 100%);
         }
 
         .log-button.background:hover {
-          box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+          box-shadow: 0 0 30px rgba(0, 210, 255, 0.5);
           border-color: var(--accent-cool);
+          background: linear-gradient(135deg, rgba(0, 210, 255, 0.2) 0%, rgba(0, 210, 255, 0.1) 100%);
         }
 
         .log-button.background .glow {
           position: absolute;
           width: 100%;
           height: 100%;
-          background: radial-gradient(circle at center, rgba(0, 210, 255, 0.2) 0%, transparent 70%);
-          opacity: 0;
+          background: radial-gradient(circle at center, rgba(0, 210, 255, 0.4) 0%, transparent 70%);
+          opacity: 0.3; /* Always visible slightly */
           transition: opacity 0.3s ease;
         }
 
         .log-button.background:hover .glow {
-          opacity: 1;
+          opacity: 0.8;
         }
-
+        
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+           .container {
+             gap: 2rem;
+             padding: 0 1rem;
+           }
+           
+           .log-button {
+             height: 140px; /* Taller touch target */
+             font-size: 1.8rem; /* Larger text */
+             border-width: 2px; /* Thicker border */
+           }
+           
+           .title {
+             font-size: 1.8rem;
+             margin-bottom: 1rem;
+           }
+        }
+        
         .feedback-message {
           position: absolute;
           bottom: 2rem;
@@ -198,8 +221,8 @@ const MainScreen = () => {
           to { opacity: 0.7; transform: translateY(0); }
         }
       `}</style>
-        </div>
-    );
+    </div>
+  );
 };
 
 export default MainScreen;
