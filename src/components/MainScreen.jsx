@@ -104,6 +104,7 @@ const MainScreen = () => {
         .buttons-container {
           display: flex;
           flex-direction: column;
+          align-items: center; /* Center them now that they have max-width */
           gap: 1.5rem;
           width: 100%;
         }
@@ -111,14 +112,17 @@ const MainScreen = () => {
         @media (min-width: 768px) {
           .buttons-container {
             flex-direction: row;
+            justify-content: center;
           }
         }
 
         .log-button {
           flex: 1;
-          height: 120px;
+          height: 200px; /* Significantly taller */
+          width: 100%;
+          max-width: 320px; /* Prevent being "too wide" */
           border: none;
-          border-radius: 20px;
+          border-radius: 30px; /* Rounder corners */
           font-size: 1.5rem;
           font-weight: 600;
           color: white;
@@ -196,14 +200,16 @@ const MainScreen = () => {
            }
            
            .log-button {
-             height: 140px; /* Taller touch target */
-             font-size: 1.8rem; /* Larger text */
-             border-width: 2px; /* Thicker border */
+             height: 200px; /* Keep them tall on mobile */
+             font-size: 2rem; /* Even larger text */
+             border-width: 3px;
+             border-radius: 35px;
+             width: 100%; /* Ensure they take available width up to max-width */
            }
            
            .title {
-             font-size: 1.8rem;
-             margin-bottom: 1rem;
+             font-size: 2rem;
+             margin-bottom: 2rem;
            }
         }
         
