@@ -118,7 +118,7 @@ const MainScreen = () => {
 
         .log-button {
           flex: 1;
-          height: 200px; /* Significantly taller */
+          height: 160px; /* Reduced from 200px */
           width: 100%;
           max-width: 320px; /* Prevent being "too wide" */
           border: none;
@@ -202,7 +202,7 @@ const MainScreen = () => {
            }
            
            .log-button {
-             height: 280px; /* Extremely tall */
+             height: 35vh; /* Dynamic tall height (approx 35% of screen height) */
              width: 100%;
              max-width: 240px; /* Force narrow column look */
              font-size: 2rem;
